@@ -29,7 +29,7 @@ def vhost(domain, path, event_id):
     vfile.write(vfilestr.strip())
 
     # reload apache2
-    subprocess.call("systemctl reload apache2")
+    subprocess.call("systemctl", "reload", "apache2")
 
 if __name__ == '__main__':
     fire.Fire()
