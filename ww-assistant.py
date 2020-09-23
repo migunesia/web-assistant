@@ -8,6 +8,7 @@ DB = mysqlcon.connect(host="localhost", user="root", password="", database="gues
 # domain = "irwanyukino-wedding.xyz"
 # path = "demos.migunesia.com/wedinv-999"
 # event_id = 3
+# python3 ww-assistant.py vhost --domain=theweddingofcitrabayu.xyz --path=demos.migunesia.com/wedinv-999 --event_id=
 def vhost(domain, path, event_id):
     # update database
     sqlcursor = DB.cursor()
