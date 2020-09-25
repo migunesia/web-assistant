@@ -29,6 +29,7 @@ def vhost(domain, path, event_id):
     vfile.write(vfilestr.strip())
 
     # reload apache2
+    subprocess.call(["a2ensite", domain])
     subprocess.call(["systemctl", "reload", "apache2"])
 
 if __name__ == '__main__':
