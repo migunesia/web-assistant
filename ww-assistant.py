@@ -28,6 +28,26 @@ def vhost(domain, path, event_id, rewrite = False, protocol = 'http'):
     vfile = open("/etc/apache2/sites-available/" + domain + ".conf", "w")
     vfile.write(vfilestr.strip())
 
+    # ini pake lets encrypt
+    if protocol == "https":
+        vfile_ssl_str = """
+            <IfModule mod_ssl.c>
+            <VirtualHost *:443>
+                ServerAdmin webmaster@localhost
+                ServerName """+ domain +""".xyz
+                ServerAlias www."""+ domain +""".xyz
+                DocumentRoot /var/www/"""+ path +"""
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+            SSLCertificateFile /etc/letsencrypt/live/"""+ domain +"""/fullchain.pem
+            SSLCertificateKeyFile /etc/letsencrypt/live/"""+ domain +"""/privkey.pem
+            Include /etc/letsencrypt/options-ssl-apache.conf
+            </VirtualHost>
+            </IfModule>
+        """
+        vfile_ssl = open("/etc/apache2/sites-available/" + domain + "-le-ssl.conf", "w")
+        vfile_ssl.write(vfile_ssl_str.strip())
+
     # reload apache2
     if rewrite:
         subprocess.call(["a2dissite", domain])
