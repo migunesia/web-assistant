@@ -34,8 +34,8 @@ def vhost(domain, path, event_id, rewrite = False, protocol = 'http'):
             <IfModule mod_ssl.c>
             <VirtualHost *:443>
                 ServerAdmin webmaster@localhost
-                ServerName """+ domain +""".xyz
-                ServerAlias www."""+ domain +""".xyz
+                ServerName """+ domain +"""
+                ServerAlias www."""+ domain +"""
                 DocumentRoot /var/www/"""+ path +"""
                 ErrorLog ${APACHE_LOG_DIR}/error.log
                 CustomLog ${APACHE_LOG_DIR}/access.log combined
