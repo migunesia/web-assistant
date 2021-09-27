@@ -27,7 +27,7 @@ def vhost(domain, path, event_id, rewrite = False, protocol = 'http'):
     """
 
     if protocol == 'https':
-        vfilestr = """
+        vfilestr = vfilestr + """
         RewriteEngine on
         RewriteCond %{SERVER_NAME} =www."""+ domain +""" [OR]
         RewriteCond %{SERVER_NAME} ="""+ domain +"""
