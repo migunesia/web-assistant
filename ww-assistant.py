@@ -24,7 +24,18 @@ def vhost(domain, path, event_id, rewrite = False, protocol = 'http'):
     DocumentRoot /var/www/""" + path + """
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>"""
+    """
+
+    if protocol == 'https':
+        vfilestr = """
+        RewriteEngine on
+        RewriteCond %{SERVER_NAME} =www."""+ domain +""" [OR]
+        RewriteCond %{SERVER_NAME} ="""+ domain +"""
+        RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+        """
+
+    vfilestr = vfilestr + "</VirtualHost>"
+
     vfile = open("/etc/apache2/sites-available/" + domain + ".conf", "w")
     vfile.write(vfilestr.strip())
 
