@@ -1,8 +1,8 @@
-import mysql.connector as mysqlcon
+# import mysql.connector as mysqlcon
 import fire
 import subprocess
 
-DB = mysqlcon.connect(host="localhost", user="root", password="", database="guestbook_portal")
+# DB = mysqlcon.connect(host="localhost", user="root", password="", database="guestbook_portal")
 
 # EXAMPLE TO USE .
 # domain = "irwanyukino-wedding.xyz"
@@ -11,9 +11,9 @@ DB = mysqlcon.connect(host="localhost", user="root", password="", database="gues
 # python3 ww-assistant.py vhost --domain=theweddingofcitrabayu.xyz --path=demos.migunesia.com/wedinv-999 --event_id=
 def vhost(domain, path, event_id, rewrite = False, protocol = 'http'):
     # update database
-    sqlcursor = DB.cursor()
-    sqlcursor.execute("UPDATE web_preferences SET pref_value = %s WHERE pref_group = 'general' AND pref_key = 'link' AND event_id = %s", (protocol + "://" + domain, event_id))
-    DB.commit()
+    # sqlcursor = DB.cursor()
+    # sqlcursor.execute("UPDATE web_preferences SET pref_value = %s WHERE pref_group = 'general' AND pref_key = 'link' AND event_id = %s", (protocol + "://" + domain, event_id))
+    # DB.commit()
 
     # create file virtual host for ubuntu 
     vfilestr = """
