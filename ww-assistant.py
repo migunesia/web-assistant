@@ -2,7 +2,7 @@ import mysql.connector as mysqlcon
 import fire
 import subprocess
 
-# DB = mysqlcon.connect(host="localhost", user="root", password="", database="guestbook_portal")
+DB = mysqlcon.connect(host="localhost", user="root", password="", database="guestbook_portal")
 
 # EXAMPLE TO USE .
 # domain = "irwanyukino-wedding.xyz"
